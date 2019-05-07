@@ -15,6 +15,7 @@ const textLabels = {
   toolbar: {
     search: 'Search',
     downloadCsv: 'Download CSV',
+    addRow: 'Add new Row',
     print: 'Print',
     viewColumns: 'View Columns',
     filterTable: 'Filter Table',

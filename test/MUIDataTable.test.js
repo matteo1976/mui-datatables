@@ -30,7 +30,10 @@ describe('<MUIDataTable />', function() {
       { name: 'Name', options: { customBodyRender: renderName, customFilterListRender: renderCustomFilterList } },
       'Company',
       { name: 'City', label: 'City Label', options: { customBodyRender: renderCities, filterType: 'textField' } },
-      { name: 'State', options: { customBodyRender: renderState, filterType: 'multiselect', customHeadRender: renderHead } },
+      {
+        name: 'State',
+        options: { customBodyRender: renderState, filterType: 'multiselect', customHeadRender: renderHead },
+      },
       { name: 'Empty', options: { empty: true, filterType: 'checkbox' } },
     ];
     data = [
@@ -94,6 +97,7 @@ describe('<MUIDataTable />', function() {
         filter: true,
         label: 'Name',
         download: true,
+        addRow: true,
         searchable: true,
         sortDirection: null,
         viewColumns: true,
@@ -109,6 +113,7 @@ describe('<MUIDataTable />', function() {
         filter: true,
         label: 'Company',
         download: true,
+        addRow: true,
         searchable: true,
         viewColumns: true,
         sortDirection: null,
@@ -123,6 +128,7 @@ describe('<MUIDataTable />', function() {
         filterType: 'textField',
         label: 'City Label',
         download: true,
+        addRow: true,
         searchable: true,
         viewColumns: true,
         sortDirection: null,
@@ -138,6 +144,7 @@ describe('<MUIDataTable />', function() {
         filterType: 'multiselect',
         label: 'State',
         download: true,
+        addRow: true,
         searchable: true,
         viewColumns: true,
         sortDirection: null,
@@ -154,6 +161,7 @@ describe('<MUIDataTable />', function() {
         filterType: 'checkbox',
         label: 'Empty',
         download: true,
+        addRow: true,
         searchable: true,
         viewColumns: true,
         sortDirection: null,
@@ -245,12 +253,12 @@ describe('<MUIDataTable />', function() {
 
   it('should correctly build internal rowsPerPageOptions when provided in options', () => {
     const options = {
-      rowsPerPageOptions: [5, 10, 15],
+      rowsPerPageOptions: [5, 10, 16],
     };
 
     const shallowWrapper = shallow(<MUIDataTable columns={columns} data={data} options={options} />);
     const state = shallowWrapper.dive().state();
-    assert.deepEqual(state.rowsPerPageOptions, [5, 10, 15]);
+    assert.deepEqual(state.rowsPerPageOptions, [5, 10, 16]);
   });
 
   it('should render pagination when enabled in options', () => {
@@ -465,6 +473,7 @@ describe('<MUIDataTable />', function() {
         filter: true,
         label: 'Name',
         download: true,
+        addRow: true,
         searchable: true,
         sortDirection: null,
         customBodyRender: renderName,
@@ -480,6 +489,7 @@ describe('<MUIDataTable />', function() {
         filter: true,
         label: 'Company',
         download: true,
+        addRow: true,
         searchable: true,
         viewColumns: true,
         sortDirection: null,
@@ -494,6 +504,7 @@ describe('<MUIDataTable />', function() {
         filterType: 'textField',
         label: 'City Label',
         download: true,
+        addRow: true,
         searchable: true,
         sortDirection: null,
         customBodyRender: renderCities,
@@ -509,6 +520,7 @@ describe('<MUIDataTable />', function() {
         filterType: 'multiselect',
         label: 'State',
         download: true,
+        addRow: true,
         searchable: true,
         viewColumns: true,
         sortDirection: null,
@@ -525,6 +537,7 @@ describe('<MUIDataTable />', function() {
         filterType: 'checkbox',
         label: 'Empty',
         download: true,
+        addRow: true,
         searchable: true,
         viewColumns: true,
         sortDirection: null,

@@ -60,7 +60,7 @@ const TABLE_LOAD = {
 };
 
 // Populate this list with anything that might render in the toolbar to determine if we hide the toolbar
-const TOOLBAR_ITEMS = ['title', 'filter', 'search', 'print', 'download', 'viewColumns', 'customToolbar'];
+const TOOLBAR_ITEMS = ['title', 'filter', 'search', 'print', 'download', 'addRow', 'viewColumns', 'customToolbar'];
 
 const hasToolbarItem = (options, title) => {
   options.title = title;
@@ -87,6 +87,7 @@ class MUIDataTable extends React.Component {
             filter: PropTypes.bool,
             sort: PropTypes.bool,
             print: PropTypes.bool,
+            addRow: PropTypes.bool,
             searchable: PropTypes.bool,
             download: PropTypes.bool,
             viewColumns: PropTypes.bool,
@@ -130,6 +131,7 @@ class MUIDataTable extends React.Component {
       customSort: PropTypes.func,
       customSearch: PropTypes.func,
       search: PropTypes.bool,
+      addRow: PropTypes.bool,
       print: PropTypes.bool,
       viewColumns: PropTypes.bool,
       download: PropTypes.bool,
@@ -230,6 +232,7 @@ class MUIDataTable extends React.Component {
       sortFilterList: true,
       sort: true,
       search: true,
+      addRow: true,
       print: true,
       viewColumns: true,
       download: true,
@@ -326,6 +329,7 @@ class MUIDataTable extends React.Component {
         print: true,
         searchable: true,
         download: true,
+        addRow: true,
         viewColumns: true,
         sortDirection: null,
       };

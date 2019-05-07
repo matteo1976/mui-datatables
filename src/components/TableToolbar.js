@@ -10,6 +10,7 @@ import TableSearch from './TableSearch';
 import SearchIcon from '@material-ui/icons/Search';
 import DownloadIcon from '@material-ui/icons/CloudDownload';
 import PrintIcon from '@material-ui/icons/Print';
+import AddIcon from '@material-ui/icons/Add';
 import ViewColumnIcon from '@material-ui/icons/ViewColumn';
 import FilterIcon from '@material-ui/icons/FilterList';
 import ReactToPrint from 'react-to-print';
@@ -161,7 +162,7 @@ class TableToolbar extends React.Component {
       tableRef,
     } = this.props;
 
-    const { search, downloadCsv, print, viewColumns, filterTable } = options.textLabels.toolbar;
+    const { search, addRow, downloadCsv, print, viewColumns, filterTable } = options.textLabels.toolbar;
     const { showSearch } = this.state;
 
     return (
@@ -195,6 +196,13 @@ class TableToolbar extends React.Component {
             <Tooltip title={downloadCsv}>
               <IconButton aria-label={downloadCsv} classes={{ root: classes.icon }} onClick={this.handleCSVDownload}>
                 <DownloadIcon />
+              </IconButton>
+            </Tooltip>
+          )}
+          {options.addRow && (
+            <Tooltip title={addRow}>
+              <IconButton aria-label={addRow} classes={{ root: classes.icon }} onClick={alert('work in progress')}>
+                <AddIcon />
               </IconButton>
             </Tooltip>
           )}
