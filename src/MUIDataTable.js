@@ -209,6 +209,28 @@ class MUIDataTable extends React.Component {
     this.setTableData(props, TABLE_LOAD.INITIAL);
   }
 
+  addNewRow = data => {
+    let newstate = this.state.data;
+    let index = newstate.length;
+    debugger;
+    newstate.push({ index: index, data: data });
+
+    this.setTableData(
+      {
+        columns: this.props.columns,
+        data: newstate,
+        options: {
+          filterList: this.props.filterList,
+        },
+      },
+      TABLE_LOAD.UPDATE,
+      () => {
+        this.setTableAction('rowDelete');
+      },
+    );
+
+    //this.setState({ data: newstate });
+  };
   /*
    * React currently does not support deep merge for defaultProps. Objects are overwritten
    */
@@ -373,7 +395,6 @@ class MUIDataTable extends React.Component {
 
   setTableData(props, status, callback = () => {}) {
     const { options } = props;
-
     let tableData = [];
     let { columns, filterData, filterList } = this.buildColumns(props.columns);
     let sortIndex = null;
@@ -832,6 +853,8 @@ class MUIDataTable extends React.Component {
 
   selectRowDelete = () => {
     const { selectedRows, data, filterList } = this.state;
+    debugger;
+    console.log(data);
 
     const selectedMap = buildMap(selectedRows.data);
     const cleanRows = data.filter(({ index }) => !selectedMap[index]);
@@ -854,6 +877,31 @@ class MUIDataTable extends React.Component {
       },
     );
   };
+
+  // selectRowAdded = () => {
+  //   const { selectedRows, data, filterList } = this.state;
+
+  //   const selectedMap = buildMap(selectedRows.data);
+  //   const cleanRows = data.filter(({ index }) => !selectedMap[index]);
+
+  //   // if (this.options.onRowsDelete) {
+  //   //   this.options.onRowsDelete(selectedRows);
+  //   // }
+
+  //   this.setTableData(
+  //     {
+  //       columns: this.props.columns,
+  //       data: cleanRows,
+  //       options: {
+  //         filterList: filterList,
+  //       },
+  //     },
+  //     TABLE_LOAD.UPDATE,
+  //     () => {
+  //       this.setTableAction('rowAdded');
+  //     },
+  //   );
+  // };
 
   toggleExpandRow = row => {
     const { dataIndex } = row;
@@ -1035,9 +1083,9 @@ class MUIDataTable extends React.Component {
     const {
       announceText,
       activeColumn,
-      data,
       displayData,
       columns,
+      data,
       page,
       filterData,
       filterList,
@@ -1045,10 +1093,13 @@ class MUIDataTable extends React.Component {
       expandedRows,
       searchText,
     } = this.state;
-
+    //console.log('FFFFFFFFFFFFFFFFFFFFFFFFFFFFF', this.state.data);
     const rowCount = this.options.count || displayData.length;
     const rowsPerPage = this.options.pagination ? this.state.rowsPerPage : displayData.length;
     const showToolbar = hasToolbarItem(this.options, title);
+
+    //let data = ['Gabby George', 'Business Analyst', 'Minneapolis', 30, '$100,000'];
+    console.log('hello', data);
 
     return (
       <Paper
@@ -1079,6 +1130,7 @@ class MUIDataTable extends React.Component {
               title={title}
               toggleViewColumn={this.toggleViewColumn}
               setTableAction={this.setTableAction}
+              addNewRow={this.addNewRow}
             />
           )
         )}
